@@ -19,7 +19,7 @@ def main():
     video_frames = read_video(input_video_path)
 
     # Detect Players and Ball
-    player_tracker = PlayerTracker(model_path='yolov8x')
+    player_tracker = PlayerTracker(model_path='models/yolov8x.pt')
     ball_tracker = BallTracker(model_path='models/yolo5_last.pt')
 
     player_detections = player_tracker.detect_frames(video_frames,
@@ -143,6 +143,7 @@ def main():
         cv2.putText(frame, f"Frame: {i}",(10,30),cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
 
     save_video(output_video_frames, "output_videos/output_video.avi")
+    cv2.imwrite("output_videos/result.png",output_video_frames[-1])
 
 if __name__ == "__main__":
     main()

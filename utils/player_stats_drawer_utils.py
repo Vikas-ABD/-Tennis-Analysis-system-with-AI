@@ -4,6 +4,8 @@ import cv2
 def draw_player_stats(output_video_frames,player_stats):
 
     for index, row in player_stats.iterrows():
+        player1_count=row['player_1_number_of_shots']
+        player2_count=row['player_2_number_of_shots']
         player_1_shot_speed = row['player_1_last_shot_speed']
         player_2_shot_speed = row['player_2_last_shot_speed']
         player_1_speed = row['player_1_last_player_speed']
@@ -54,5 +56,24 @@ def draw_player_stats(output_video_frames,player_stats):
         output_video_frames[index] = cv2.putText(output_video_frames[index], text, (start_x+10, start_y+200), cv2.FONT_HERSHEY_SIMPLEX, 0.45, (255, 255, 255), 1)
         text = f"{avg_player_1_speed:.1f} km/h    {avg_player_2_speed:.1f} km/h"
         output_video_frames[index] = cv2.putText(output_video_frames[index], text, (start_x+130, start_y+200), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2)
+
+
+        # Define the position for the text (top-left corner)
+        position = (650, 1000)  # Coordinates for the first line of text
+
+        # Define the font, scale, color, and thickness
+        font = cv2.FONT_HERSHEY_SIMPLEX
+        font_scale = 1
+        color = (255, 255, 255)  # White color in BGR
+        thickness = 2
+
+        # Combine the text into two lines
+        text1 = f'Player 1 Shots: {player1_count}'
+        text2 = f'Player 2 Shots: {player2_count}'
+
+        # Put the text on the frame
+        output_video_frames[index]=cv2.putText(output_video_frames[index], text1, position, font, font_scale, color, thickness)
+        output_video_frames[index]= cv2.putText(output_video_frames[index], text2, (position[0], position[1] + 30), font, font_scale, color, thickness)
+
     
     return output_video_frames

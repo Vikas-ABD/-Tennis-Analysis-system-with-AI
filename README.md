@@ -14,7 +14,7 @@ This project provides an in-depth analysis of tennis players in a video, focusin
 ## Output Videos
 Below is a screenshot from one of the output videos showing the detected players, ball, and mini court:
 
-![Screenshot](output_videos/screenshot.jpeg)
+![Screenshot](output_videos/result.png)
 
 ## Models Used
 - **YOLOv8**: Used for detecting players and identifying the main players based on proximity to court key points.
